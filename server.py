@@ -8,8 +8,10 @@ mysql = MySQLConnector(app,'tacosdb')
 
 @app.route('/')
 def index():
+    query = "SELECT * FROM restaurants"
+    result = mysql.query_db(query)
 
-    return render_template('index.html')
+    return render_template('index.html', restaurants=result)
 
 # Show the "add restaurant" page
 @app.route('/add')
