@@ -21,8 +21,27 @@ def show_add():
 # Add a new restaurant
 @app.route('/add/new', methods=['POST'])
 def add():
-
-    return redirect('/')
+	  data = request.form
+    isValid = True
+    # validation for length
+    if len(data['name']) < 2:
+        isValid = False
+    if len(data['street_num']) < 2: # pick a length? regex?
+        isValid = False
+    if len(data['city']) < 2:
+        isValid = False
+    if len(data['zip']) < 5 or len(data['zip']) > 5:
+        isValid = False
+    if len(data['price']) > 2 or len(data['price']) < 1:
+        isValid = False
+    # sql query if entry exists - street number zipcode
+    if not isValid:
+        flash("invalid entry! try again")
+        return redirect('/add')
+    # check if fields are valid, redirect to /add if not valid
+    else:
+        # sql insert
+        return redirect('/')
 
 # Show a "restaurant detail" page
 @app.route('/view/<restaurant_id>')
