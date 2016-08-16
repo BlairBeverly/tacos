@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		input{
+			margin: 5px;
+		}
+
+		.flash{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+<h1>Add a Restaurant</h1>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <p class="flash">{{message}}</p>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<form action="/add/new" method="post">
+	<label>Name:</label><input type="text" name="name" placeholder="Tacolicious">
+	<br>
+	<label>Street Number:</label><input type="text" name="street_num" placeholder="123 Address Street">
+	<br>
+	<label>City:</label><input type="text" name="name" placeholder="San Jose">
+	<br>
+	<label>Zipcode:</label><input type="text" name="name" placeholder="95101">
+	<br>
+	<label>Price:</label><input type="text" name="name" placeholder="1">
+	<br>
+	<label>Note: Price is a 5 scale. 5 is expensive. 1 is cheap.</label>
+	<br>
+	<input type="submit" value="Add a Restaurant">
+</form>
+</body>
+</html>

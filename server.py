@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, request, flash
 from mysqlconnection import MySQLConnector
+import re
 
 app = Flask(__name__)
 
