@@ -5,19 +5,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema tacosdb
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema tacosdb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `tacosdb` DEFAULT CHARACTER SET utf8 ;
+USE `tacosdb` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`restaurants`
+-- Table `tacosdb`.`restaurants`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`restaurants` (
+CREATE TABLE IF NOT EXISTS `tacosdb`.`restaurants` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `street_num` VARCHAR(45) NULL,
@@ -29,9 +29,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`items`
+-- Table `tacosdb`.`items`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`items` (
+CREATE TABLE IF NOT EXISTS `tacosdb`.`items` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `restaurant_id` INT NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`items` (
   INDEX `fk_items_restaurants_idx` (`restaurant_id` ASC),
   CONSTRAINT `fk_items_restaurants`
     FOREIGN KEY (`restaurant_id`)
-    REFERENCES `mydb`.`restaurants` (`id`)
+    REFERENCES `tacosdb`.`restaurants` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
