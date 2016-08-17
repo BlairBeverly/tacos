@@ -23,17 +23,26 @@ def add():
 
     return redirect('/')
 
+#George's feature----------------------------------------------------------
+
 # Show a "restaurant detail" page
 @app.route('/view/<restaurant_id>')
 def show_view(restaurant_id):
+    info_query = "SELECT * FROM restaurants WHERE id = " + restaurant_id
+    info = mysql.query_db(info_query)
 
-    return render_template('view_restaurant.html', restaurant_id=restaurant_id)
+    item_query = "SELECT * FROM items WHERE restaurant_id =  " + restaurant_id
+    items = mysql.query_db(item_query)
+
+    return render_template('view.html', info=info[0], items=items)
 
 # Add a new item for a given restaurant
 @app.route('/view/<restaurant_id>', methods=['POST'])
 def add_item(restaurant_id):
 
     return redirect('/view/' + restaurant_id)
+
+#George's feature end----------------------------------------------------------
 
 # Show the "edit restaurant" page
 @app.route('/edit/<restaurant_id>')
