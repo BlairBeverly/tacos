@@ -52,12 +52,20 @@ def edit_restaurant(restaurant_id):
 # Show the "delete confirmation" page
 @app.route('/delete/<restaurant_id>')
 def show_delete(restaurant_id):
+    query = "SELECT name, id from restaurants WHERE id = :id"
+    data = {'id': restaurant_id}
 
-    return render_template('delete_restaurant.html', restaurant_id=restaurant_id)
+    result = mysql.query_db(query, data)
+
+    return render_template('delete_conf.html', restaurant_data=result[0])
 
 # Delete a restaurant
 @app.route('/delete/<restaurant_id>', methods=['POST'])
 def delete_restaurant(restaurant_id):
+    query = "DELETE FROM restaurants WHERE id = :id"
+    data = {'id': restaurant_id}
+
+    mysql.query_db(query, data)
 
     return redirect('/')
 
