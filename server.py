@@ -90,12 +90,23 @@ def add_item(restaurant_id):
 @app.route('/edit/<restaurant_id>')
 def show_edit(restaurant_id):
 
-    return render_template('edit_restaurant.html', restaurant_id=restaurant_id)
+    return render_template('edit.html', restaurant_id=restaurant_id)
 
 # Edit a restaurant
 @app.route('/edit/<restaurant_id>', methods=['POST'])
 def edit_restaurant(restaurant_id):
-
+    data = {
+    "restaurant_name" : request.form['restaurant_name'],
+    "street_num" : request.form['street'],
+    "city" : request.form['city'],
+    "zip_code" : request.form['zip_code'],
+    "price" : request.form['price'],
+    "restaurant_id" : restaurant_id
+    }
+    query = "update restaurants set name=:restaurant_name, street_num=:street_num, "\
+    " city=:city, zip=:zip_code, price=:price where id=:restaurant_id"
+    mysql.query_db(query, data)
+    print data
     return redirect('/')
 
 # Show the "delete confirmation" page

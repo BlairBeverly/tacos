@@ -1,0 +1,26 @@
+*{
+  margin: 0px;
+  padding: 0px
+}
+.container{
+height: 800px;
+width: 1000px;
+display: inline-block;
+
+}
+.body{
+display: inline-block;
+height: 750px;
+width: 950px;
+background-color: Silver;
+}
+.form{
+  display: inline-block;
+  height: 700px;
+  width: 900px;
+  background-color: Silver;
+}
+.button{
+  background-color: Silver;
+
+}
