@@ -11,32 +11,32 @@
             <th style="text-align: left;">Address</th>
             <th style="text-align: left;">Price</th>
         </tr>
-
-        {% for restaurant in restaurants %}
         <tr>
+        {% for restaurant in restaurants %}
             <td>{{ restaurant['name'] }}</td>
-            <td>{{ restaurant['street_num'] }}, 
-                {{ restaurant['city'] }}, 
+            <td>{{ restaurant['street_num'] }},
+                {{ restaurant['city'] }},
                 {{ restaurant['zip'] }}
             </td>
             <td>{{ restaurant['price'] }}</td>
             <td>
-                <form style="display:inline;" action="/view/{{ restaurant['id'] }}">
+                <form style="display:inline;" action='/view'>
                     <input type="submit" value="View">
                 </form>
-                <form style="display:inline;" action="/edit/{{ restaurant['id'] }}"">
+                <form style="display:inline;" action='/edit/{{ restaurant['id']}}'>
                     <input type="submit" value="Edit">
                 </form>
-                <form style="display:inline;" action="/delete/{{ restaurant['id'] }}"">
+                <form style="display:inline;" action='/delete'>
                     <input type="submit" value="Delete">
                 </form>
+
             </td>
-        </tr>
         {% endfor %}
+        </tr>
     </table>
     <br>
     <button>
-        <a style="text-decoration: none; color:black" href='/add'>
+        <a style="text-decoration: none; color:black" href='/add/new'>
             Add Restaurant
         </a>
     </button>
