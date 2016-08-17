@@ -2,12 +2,9 @@ from flask import Flask, redirect, render_template, request, flash
 from mysqlconnection import MySQLConnector
 
 app = Flask(__name__)
-<<<<<<< HEAD
+
 app.secret_key = 'secret'
 
-=======
-app.secret_key = "secret" #Added secret key for flashing
->>>>>>> ad1a7a0afd069f9586bc99780ac6614d23ddd794
 mysql = MySQLConnector(app,'tacosdb')
 
 
