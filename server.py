@@ -96,12 +96,12 @@ def show_edit(restaurant_id):
 @app.route('/edit/<restaurant_id>', methods=['POST'])
 def edit_restaurant(restaurant_id):
     data = {
-    "restaurant_name" : request.form['restaurant_name'],
-    "street_num" : request.form['street'],
-    "city" : request.form['city'],
-    "zip_code" : request.form['zip_code'],
-    "price" : request.form['price'],
-    "restaurant_id" : restaurant_id
+        "restaurant_name" : request.form['restaurant_name'],
+        "street_num" : request.form['street'],
+        "city" : request.form['city'],
+        "zip_code" : request.form['zip_code'],
+        "price" : request.form['price'],
+        "restaurant_id" : restaurant_id
     }
     query = "update restaurants set name=:restaurant_name, street_num=:street_num, "\
     " city=:city, zip=:zip_code, price=:price where id=:restaurant_id"
@@ -122,7 +122,8 @@ def show_delete(restaurant_id):
 # Delete a restaurant
 @app.route('/delete/<restaurant_id>', methods=['POST'])
 def delete_restaurant(restaurant_id):
-    query = "DELETE FROM restaurants WHERE id = :id"
+    query = "DELETE i FROM items i where i.restaurant_id = :id; "\
+            "DELETE r FROM restaurants r WHERE r.id = :id;"
     data = {'id': restaurant_id}
 
     mysql.query_db(query, data)
