@@ -2,7 +2,7 @@ from flask import Flask, redirect, render_template, request, flash
 from mysqlconnection import MySQLConnector
 
 app = Flask(__name__)
-
+app.secret_key = "secret" #Added secret key for flashing
 mysql = MySQLConnector(app,'tacosdb')
 
 
@@ -39,8 +39,11 @@ def show_view(restaurant_id):
 # Add a new item for a given restaurant
 @app.route('/view/<restaurant_id>', methods=['POST'])
 def add_item(restaurant_id):
-
-    return redirect('/view/' + restaurant_id)
+    if not request.form['item']:
+        flash("You cannot submit an empty value")
+        return redirect('/view/'+restaurant_id)
+    else:
+        return redirect('/view/'+restaurant_id)
 
 #George's feature end----------------------------------------------------------
 

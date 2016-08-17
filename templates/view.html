@@ -16,9 +16,14 @@
 	{% endfor %}
 	</ol>
 
-	<form action="/view/<restaurant_id>" method="post">
+	<form action="/view/{{ info['id'] }}" method="post">
 		<input type="text" name="item">
 		<input type="submit" name="action" value="Add">
 	</form>
+	
+	{% with error = get_flashed_messages() %}
+		<p>{{ error }}</p>
+	{% endwith %}
+
 </body>
 </html>
