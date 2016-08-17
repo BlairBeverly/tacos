@@ -21,13 +21,13 @@
             </td>
             <td>{{ restaurant['price'] }}</td>
             <td>
-                <form style="display:inline;" action='/view'>
+                <form style="display:inline;" action="/view/{{ restaurant['id'] }}">
                     <input type="submit" value="View">
                 </form>
-                <form style="display:inline;" action='/edit'>
+                <form style="display:inline;" action="/edit/{{ restaurant['id'] }}"">
                     <input type="submit" value="Edit">
                 </form>
-                <form style="display:inline;" action='/delete'>
+                <form style="display:inline;" action="/delete/{{ restaurant['id'] }}"">
                     <input type="submit" value="Delete">
                 </form>
             </td>
