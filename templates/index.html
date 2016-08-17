@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tacos</title>
+</head>
+<body>
+<h1>Restaurants</h1>
+    <table style="width:800px;">
+        <tr>
+            <th style="text-align: left;">Restaurant Name</th>
+            <th style="text-align: left;">Address</th>
+            <th style="text-align: left;">Price</th>
+        </tr>
+        <tr>
+        {% for restaurant in restaurants %}
+            <td>{{ restaurant['name'] }}</td>
+            <td>{{ restaurant['street_num'] }}, 
+                {{ restaurant['city'] }}, 
+                {{ restaurant['zip'] }}
+            </td>
+            <td>{{ restaurant['price'] }}</td>
+            <td>
+                <form style="display:inline;" action='/view'>
+                    <input type="submit" value="View">
+                </form>
+                <form style="display:inline;" action='/edit'>
+                    <input type="submit" value="Edit">
+                </form>
+                <form style="display:inline;" action='/delete'>
+                    <input type="submit" value="Delete">
+                </form>
+
+            </td>
+        {% endfor %}
+        </tr>
+    </table>
+    <br>
+    <button>
+        <a style="text-decoration: none; color:black" href='/add/new'>
+            Add Restaurant
+        </a>
+    </button>
+</body>
+</html>
