@@ -1,2 +1,2 @@
 #ignore .pyc files
-*.pyc
+mysqlconnection.pyc
