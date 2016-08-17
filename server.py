@@ -1,8 +1,8 @@
 from flask import Flask, redirect, render_template, request, flash
 from mysqlconnection import MySQLConnector
-import re
 
 app = Flask(__name__)
+app.secret_key = 'secret'
 
 mysql = MySQLConnector(app,'tacosdb')
 
@@ -21,7 +21,7 @@ def show_add():
 # Add a new restaurant
 @app.route('/add/new', methods=['POST'])
 def add():
-	  data = request.form
+    data = request.form
     isValid = True
     # validation for length
     if len(data['name']) < 2:
@@ -34,13 +34,22 @@ def add():
         isValid = False
     if len(data['price']) > 2 or len(data['price']) < 1:
         isValid = False
-    # sql query if entry exists - street number zipcode
+    # v2 add sql query if entry exists - street number + zipcode
     if not isValid:
         flash("invalid entry! try again")
         return redirect('/add')
-    # check if fields are valid, redirect to /add if not valid
     else:
-        # sql insert
+        query = '''INSERT INTO restaurants (name, street_num, city, zip, 
+        price) VALUES (:name, :street_num, :city, :zip, :price);'''
+        data = {
+				'name' : data['name'],
+				'street_num' : data['street_num'],
+				'city' : data['city'],
+				'zip' : data['zip'],
+				'price' : data['price'],
+				 }
+        print data
+        user = mysql.query_db(query,data)
         return redirect('/')
 
 # Show a "restaurant detail" page
