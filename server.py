@@ -43,6 +43,13 @@ def add_item(restaurant_id):
         flash("You cannot submit an empty value")
         return redirect('/view/'+restaurant_id)
     else:
+        query = "INSERT INTO items (name, restaurant_id) "\
+        "VALUES (:name, :id)"
+        data = {
+            "name": request.form['item'],
+            "id": restaurant_id
+        }
+        mysql.query_db(query,data)
         return redirect('/view/'+restaurant_id)
 
 #George's feature end----------------------------------------------------------

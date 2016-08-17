@@ -21,8 +21,10 @@
 		<input type="submit" name="action" value="Add">
 	</form>
 	
-	{% with error = get_flashed_messages() %}
-		<p>{{ error }}</p>
+	{% with errors = get_flashed_messages() %}
+		{% for error in errors %}
+			<p class="error">{{ error }}</p>
+		{% endfor %}
 	{% endwith %}
 
 </body>
